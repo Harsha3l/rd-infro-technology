@@ -2,7 +2,7 @@
 // This shows how to connect your frontend to the backend API
 
 class ECHOALAPI {
-    constructor(baseURL = 'http://localhost:8000') {
+    constructor(baseURL = 'https://echoai-5n2z.onrender.com') {
         this.baseURL = baseURL;
     }
 

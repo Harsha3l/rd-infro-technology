@@ -22,7 +22,14 @@ app = FastAPI(
 # CORS middleware for frontend integration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173", "http://127.0.0.1:3000", "http://127.0.0.1:5173"],
+    allow_origins=[
+        "http://localhost:3000", 
+        "http://localhost:5173", 
+        "http://127.0.0.1:3000", 
+        "http://127.0.0.1:5173",
+        "https://echoai-git-main-harsha-tri-lakshmis-projects.vercel.app",
+        "https://echoai-5n2z.onrender.com"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -368,11 +375,15 @@ async def get_available_ai_models():
     }
 
 if __name__ == "__main__":
+    import os
+    port = int(os.environ.get("PORT", 8000))
+    host = "0.0.0.0" if os.environ.get("RENDER") else "127.0.0.1"
+    
     try:
         uvicorn.run(
             "main:app",
-            host="127.0.0.1",  # Use localhost for better compatibility
-            port=8000,
+            host=host,
+            port=port,
             reload=False,  # Disable reload for stability
             log_level="info"
         )
